@@ -1,0 +1,41 @@
+# Server configuration
+server:
+   port: 8085
+   servlet:
+      context-path: /rating
+      encoding:
+         charset: UTF-8
+         enabled: true
+         force: true
+
+# Spring configuration
+spring:
+   application:
+      name: rating-service
+   data:
+      mongodb:
+         uri: ${MONGODB_URI:mongodb://root:root@localhost:27017/rating_service?authSource=admin}
+   kafka:
+      properties:
+         security.protocol: PLAINTEXT
+      producer:
+         bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9094}
+         key-serializer: org.apache.kafka.common.serialization.StringSerializer
+         value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      consumer:
+         bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9094}
+         auto-offset-reset: earliest
+         group-id: rating-service-group
+         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+         value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+         properties:
+            spring.json.trusted.packages: "*"
+            spring.json.value.default.type: "com.tth.commonlibrary.event.dto.NotificationEvent"
+
+# Application configuration
+app:
+   services:
+      profile:
+         url: ${PROFILE_SERVICE_URL:http://localhost:8082/profile}
+      identity:
+         url: ${IDENTITY_SERVICE_URL:http://localhost:8083/identity}

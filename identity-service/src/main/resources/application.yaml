@@ -1,0 +1,56 @@
+# Server configuration
+server:
+   port: 8083
+   servlet:
+      context-path: /identity
+      encoding:
+         charset: UTF-8
+         enabled: true
+         force: true
+
+# Spring configuration
+spring:
+   application:
+      name: identity-service
+   datasource:
+      url: ${DBMS_URL:jdbc:mysql://localhost:3306/identity_service}
+      driverClassName: "com.mysql.cj.jdbc.Driver"
+      username: ${DBMS_USERNAME:root}
+      password: ${DBMS_PASSWORD:root}
+   jpa:
+      hibernate:
+         ddl-auto: update
+   kafka:
+      properties:
+         security.protocol: PLAINTEXT
+      producer:
+         bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9094}
+         key-serializer: org.apache.kafka.common.serialization.StringSerializer
+         value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      consumer:
+         bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9094}
+         auto-offset-reset: earliest
+         group-id: identity-service-group
+         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+         value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+         properties:
+            spring.json.trusted.packages: "*"
+            spring.json.value.default.type: "com.tth.commonlibrary.event.dto.NotificationEvent"
+   servlet:
+      multipart:
+         max-file-size: 10MB
+         max-request-size: 10MB
+
+# JWT configuration
+jwt:
+   signer-key: ${JWT_SIGNER_KEY:1TjXchw5FloESb63Kc+DFhTARvpWL4jUGCwfGWxuG5SIf/1y/LgJxHnMqaF6A/ij}
+   valid-duration: ${JWT_VALID_DURATION:3600} # in seconds
+   refreshable-duration: ${JWT_REFRESHABLE_DURATION:86400} # in seconds
+
+# Application configuration
+app:
+   services:
+      profile:
+         url: ${PROFILE_SERVICE_URL:http://localhost:8082/profile}
+      file:
+         url: ${FILE_SERVICE_URL:http://localhost:8887/file}
