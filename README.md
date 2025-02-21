@@ -42,7 +42,7 @@
   - **Kubernetes** orchestrates microservices deployment.
 
 ## Technology Architecture
-![image](https://github.com/user-attachments/assets/647c1fb9-3e23-4b3a-bd4a-56f3a0b65163)
+![image](https://res.cloudinary.com/dqmgpnwlk/image/upload/v1740166117/dc517199-ca2e-4e60-8adb-aa19fa3ad1b6_gkpplw.jpg)
 
 ## 🛠️ Prerequisites
 What you need to run the project:
