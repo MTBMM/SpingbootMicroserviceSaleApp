@@ -41,6 +41,40 @@
   - **GitHub Actions** automates testing and deployment.
   - **Kubernetes** orchestrates microservices deployment.
 
+## Microservices Overview
+### **Rating Service**  
+- **Functionality:**  
+  - Allows users to rate and review products.
+  - Supports a **star rating system (1-5)** and detailed feedback.
+  - Integrates with **Kafka** for real-time rating updates.
+
+- **Key Features:**  
+  - Users can add, edit, and delete their reviews.
+  - Aggregates and displays average product ratings.
+  - Analyzes rating data to highlight **top-rated products**.
+
+### **Profile Service**  
+- **Functionality:**  
+  - Manages user profile information.
+  - Allows users to update profile pictures, contact details, and order history.
+  - Secured with **JWT Authentication**.
+
+- **Key Features:**  
+  - Users can edit their personal profiles.
+  - Supports identity verification via email/SMS.
+  - Stores user purchase history for easy access.
+
+### **Shipment Service**  
+- **Functionality:**  
+  - Tracks and manages order shipments.
+  - Integrates with shipping providers (**DHL, FedEx, UPS**) to update delivery statuses.
+  - Sends notifications when orders are shipped or delivered.
+
+- **Key Features:**  
+  - Automatically calculates shipping fees based on location and method.
+  - Sends email/SMS updates for shipment status.
+  - Provides **real-time tracking API** for customers.
+
 ## Technology Architecture
 ![image](https://res.cloudinary.com/dqmgpnwlk/image/upload/v1740166117/dc517199-ca2e-4e60-8adb-aa19fa3ad1b6_gkpplw.jpg)
 
@@ -53,13 +87,11 @@ What you need to run the project:
 
 ## 🚀 Getting Started
 
-## How to run the application using Docker
-
+### How to run the application using Docker
 1. Run `mvn clean package -DskipTests` to build the applications and create the docker image locally.
 2. Run `docker-compose up -d` to start the applications.
 
-## How to run the application without Docker
-
+### How to run the application without Docker
 1. Run `mvn clean verify -DskipTests` by going inside each folder to build the applications.
 2. After that run `mvn spring-boot:run` by going inside each folder to start the applications.
 
@@ -68,7 +100,7 @@ What you need to run the project:
 <div style="display: flex; gap: 10px; align-items: center;">
     <a href="mailto:kiennguyentrung408@gmail.com" target="_blank" style="text-decoration: none;">
         <img src="https://img.icons8.com/color/48/000000/gmail--v2.png" alt="Email" height="30" width="40">
-    </a> 
+    </a>
     <a href="https://www.linkedin.com/in/kien-nguyentrung-a62b89309/" target="_blank">
         <img src="https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=000000" alt="LinkedIn" height="30" width="40">
     </a>
@@ -76,6 +108,4 @@ What you need to run the project:
 <a href="#top" style="transition: all .25s ease-in-out; position: fixed; bottom: 0; right: 0; display: inline-flex; cursor: pointer; align-items: center; justify-content: center; margin: 0 2em 2em 0; padding: .25em; width: 8em; height: 2em; background-color: #f0f0f0; text-align: center;">
   🔼 Back to top
 </a>
-
-
 
